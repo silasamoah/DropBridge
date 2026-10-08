@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dropno · Just drop it</title><link rel="stylesheet" href="/files/styles.css"></head>
+<body>
+  <header><a class="brand" href="/">↗ <span>dropno</span></a><span id="status" role="status">Connecting to server…</span></header>
+  <main>
+    <div class="intro"><span class="eyebrow">A SHORTER WAY FROM HERE TO THERE</span><h1>Your files.<br>One small hop.</h1><p>Pair two browsers. Drop a file. Keep it between you.</p></div>
+    <section class="pair card" aria-labelledby="pair-title"><div class="section-title"><span class="number">01</span><h2 id="pair-title">Make a connection</h2><button id="disconnect" class="quiet" hidden>Disconnect</button></div>
+      <div class="device"><label for="device-name">Your device name</label><input id="device-name" maxlength="40" placeholder="Name this browser"><span id="peer-name" class="hint"></span></div>
+      <div class="identity"><span id="identity-status" class="hint"></span> <button id="trust-device" class="quiet" hidden>Trust this device</button></div>
+      <div class="pair-grid"><div><p>On this device</p><button id="create" disabled>Create a room <span>↗</span></button><div id="room" hidden><span class="hint">Enter this code or scan on the other device</span><strong id="code"></strong><img id="qr" alt="Scan to join this room" width="144" height="144"><p><button id="copy-link" class="quiet">Copy pairing link</button></p><span class="hint">Files from your paired browser arrive automatically.</span></div></div>
+      <div><p>On the other device</p><form id="join-form"><label class="sr-only" for="join-code">Six-digit room code</label><input id="join-code" placeholder="6-digit room code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="off"><button id="join" disabled>Join room</button></form></div></div>
+    </section>
+    <section class="card" aria-labelledby="send-title"><div class="section-title"><span class="number">02</span><h2 id="send-title">Send something good</h2><span class="hint">Queue multiple files</span></div>
+      <label id="drop" class="drop disabled" for="file"><span class="drop-icon">↑</span><strong>Drop your files here</strong><span>or <u>browse your files</u></span><small id="drop-hint">Connect a second browser to get started</small><input type="file" id="file" multiple disabled></label>
+      <p id="storage-status" class="hint"></p>
+      <div id="transfer" hidden><div class="transfer-heading"><strong id="file-name"></strong><span id="progress-text"></span></div><progress id="progress" max="100" value="0"></progress><div class="transfer-heading hint"><span id="detail"></span><span id="speed"></span></div></div>
+      <div id="receive-transfer" hidden><div class="transfer-heading"><strong id="receive-name"></strong><span id="receive-state"></span></div><progress id="receive-progress" max="100" value="0"></progress><div class="transfer-heading hint"><span id="receive-detail"></span><span id="receive-speed"></span></div></div>
+      <button id="cancel" class="quiet" hidden>Cancel transfers and queue</button>
+      <ul id="queue" aria-label="Files waiting to send"></ul>
+      <div id="received" hidden><div class="section-title"><h2>Received files</h2><button id="clear-files" class="quiet">Clear files</button></div><div id="received-files"></div></div>
+    </section>
+    <p id="message" role="alert" hidden></p>
+    <details class="card"><summary>Recent transfers <span class="hint">This browser only</span></summary><ul id="history"></ul></details>
+    <details class="card"><summary>Trusted devices <span class="hint">Verified by device key</span></summary><ul id="trusted-devices"></ul></details>
+    <footer><span>↔ Direct browser-to-browser</span><span>No account. No file uploads.</span><p>Best on the same Wi-Fi. Keep both pages visible and screens unlocked while transferring.<br>On iPhone and iPad, switching apps or locking the screen can interrupt a transfer.</p></footer>
+  </main><script type="module" src="/files/js/app.js"></script>
+</body></html>

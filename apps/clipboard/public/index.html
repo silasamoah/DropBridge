@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ClipboardBridge</title><link rel="stylesheet" href="/clipboard/styles.css"><script type="module" src="/clipboard/js/app.js"></script></head>
+<body>
+<main>
+  <header><div class="brand">CB <span>LOCAL DEVICE BRIDGE</span></div><h1>Your words, across devices.</h1><p>Pair two browsers. Paste your text. Send it straight to the other device.</p></header>
+  <section class="pair" aria-labelledby="pair-title">
+    <div class="section-heading"><h2 id="pair-title">1. Connect your devices</h2><span id="status" role="status">Connecting to server…</span></div>
+    <div class="pair-controls"><button id="create" disabled>Create room</button><span class="or">or</span><form id="join-form"><label class="sr-only" for="code">Six-digit room code</label><input id="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit code" required autocomplete="off"><button id="join" disabled>Join room</button></form></div>
+    <label class="remember"><input id="remember" type="checkbox" checked> Remember this pairing for 24 hours</label>
+    <div id="saved-pairings" aria-label="Saved pairings"></div>
+    <div id="room-panel" hidden><p>Room code <strong id="room-code"></strong><span class="hint">Enter this code on your other device.</span></p><button id="leave" class="secondary">Leave room</button></div>
+    <div id="qr-panel" hidden><img id="qr-image" alt="Scan to open this room on another device" width="180" height="180" hidden><div><label for="share-address">Address your other device can reach</label><select id="share-address"></select><a id="share-link"></a><p id="qr-hint" class="hint"></p></div></div>
+    <div class="recovery"><span id="recovery-detail" role="status"></span><button id="reconnect" class="secondary" hidden>Retry connection</button></div>
+    <p id="setup-help" class="hint"></p>
+    <details><summary>Phone & HTTPS setup</summary><p>Use the same Wi-Fi. Start the server with <code>HOST=0.0.0.0</code> to make LAN addresses available in the selector. Choose your Wi-Fi address if you see several.</p><p>The Copy button needs HTTPS on phones. Put this server behind a trusted HTTPS reverse proxy, forward WebSocket upgrades for <code>/signal</code>, and set <code>PUBLIC_URL</code> to its HTTPS address. Until then, select received text and copy it manually.</p><p>iOS may pause this page in the background. Return here, wait for Connected, then send. Leaving ends the room and forgets this pairing.</p></details>
+  </section>
+  <div class="text-grid">
+    <section aria-labelledby="send-title"><h2 id="send-title">2. Send text</h2><label for="outgoing">Paste or type something to share</label><textarea id="outgoing" placeholder="A link, a note, a little piece of text…" spellcheck="false"></textarea><div class="actions"><span>Up to 12 KB · text only</span><button id="send" disabled>Send text →</button></div><div class="delivery-row"><span id="delivery-status" role="status">No text sent yet</span><button id="retry-send" class="secondary" hidden>Retry previous text</button></div></section>
+    <section aria-labelledby="receive-title"><h2 id="receive-title">3. Receive & copy</h2><label for="incoming">Latest text from your other device</label><textarea id="incoming" readonly placeholder="Received text will appear here." spellcheck="false"></textarea><div class="actions"><span id="received-time">Nothing received yet</span><button id="copy" disabled>Copy text</button></div></section>
+  </div>
+  <p id="notice" role="status" aria-live="polite">Text stays in these tabs. Sending and copying are always manual.</p>
+  <footer>Browser to browser · No accounts · No saved clipboard history</footer>
+</main>
+</body></html>

@@ -1,0 +1,19 @@
+{
+  "name": "dropbridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test apps/dropno/test/*.js apps/clipboard/test/*.js test/*.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.4.0",
+    "qrcode-generator": "^2.0.4",
+    "qrcode-svg": "^1.1.0",
+    "ws": "^8.18.3"
+  }
+}
