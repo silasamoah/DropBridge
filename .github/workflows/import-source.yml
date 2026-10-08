@@ -1,1 +1,23 @@
-
+name: Import DropBridge source
+on:
+  push:
+    paths:
+      - '.github/workflows/import-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack source
+        run: python3 -m zipfile -e DropBridge-source.zip .
+      - name: Commit source and remove temporary import files
+        run: |
+          git rm DropBridge-source.zip .github/workflows/import-source.yml
+          git add .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Combine Dropno and ClipboardBridge in one server and UI"
+          git push origin HEAD:main
